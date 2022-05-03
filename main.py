@@ -26,3 +26,28 @@ cnt=extract_news('https://news.ycombinator.com/')
 content += cnt
 content += ('<br>-------<br>')
 content += ('<br><br>End of Message')
+#sending email with proper parameter
+print('Processing for Composing an Email')
+
+#fill-out email details with required parameters
+SERVER='smtp.gmail.com'
+PORT=587
+FROM=''
+TO=''
+PASS='' #put password here
+#fp=open(file_name,'rb')
+#create a plain message
+#msg-MIMEText('')
+msg=MIMEMultipart()
+
+#msg.add_header('Content-Disposition','attachment','filename='empty.txt'')
+msg['Subject']='Hacker News Top stories'+'This is an automatic email-send using python'+''+str(now.d(now.year)+'-'+str(now.month)+'-'+str(now.day)
+msg['From']=FORM
+msg['To']=TO
+
+msg.attach(MIMEText(content, 'html'))
+#fp.close()
+
+print('Initiating Server......')
+server=smtplib.SMTP(SERVER,PORT)
+#server=smtplib.SMTP_SSL('smtp.gmail.com',465)
